@@ -1,15 +1,35 @@
+# Performs Dip Test of Unimodality and Silverman's Critical Bandwidth Test, for use in the clusterability R package.
+
+# Copyright (C) 2020  Zachariah Neville, Naomi Brownstein, Andreas Adolfsson, Margareta Ackerman
+
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
 # Perform the Dip Test of Unimodality
 dip <- function(dipdata, simulatepvalue = FALSE, B = 2000) {
   dipresult <- diptest::dip.test(dipdata, simulatepvalue, B)
   return(dipresult)
 }
 
-# From the silvermantest package cited in the paper, we concatenated the three main functions necessary to perform
+# From the silvermantest package cited in the paper, we extracted the three main functions necessary to perform
 # the test. We also modified so that k = 1 is the default, and the returned
 # value of the silverman.test is a list containing the p-value and saved seed.
 # The method used in the bootstrap is the one described in Silverman 1981, which is slightly different
 # from the method used in the original silvermantest package
-# Originally obtained from: https://www.mathematik.uni-marburg.de/~stochastik/R_packages/
+# The original behavior of rounding p-values to 0 if they are below 0.005 was also removed.
+# Source originally obtained from: https://www.mathematik.uni-marburg.de/~stochastik/R_packages/
 
 silverman <-
   function(x,k=1,M=999,adjust=FALSE,digits=6,seed=NULL){
@@ -64,9 +84,9 @@ silverman <-
         y=c(0,0,0,0.002,0.004,0.006,0.010,0.012,0.016,0.021,0.025,0.032,0.038,0.043,0.050,0.057,0.062,0.07,0.079,0.088,0.094,0.102,0.149,0.202,0.252,0.308,0.423)
         sp = splines::interpSpline(x,y)
         #adjusting the p-value
-        if(p<0.005)
-          p=0
-        else{
+        #if(p<0.005)
+        #  p=0
+       #else{
           p = stats::predict(sp,p)$y
           p = round(p,digits)
 
@@ -74,7 +94,7 @@ silverman <-
           if(p < 0){
             p <- 0
           }
-        }
+       # }
       }
     }
 

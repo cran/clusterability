@@ -1,4 +1,20 @@
 #' Perform a test of clusterability
+# Copyright (C) 2020  Zachariah Neville, Naomi Brownstein, Andreas Adolfsson, Margareta Ackerman
+
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#'
 #'
 #' @description Performs tests for clusterability of a data set and returns results in a clusterability object. Can do data reduction via PCA or pairwise distances and standardize data prior to performing the test.
 #' @param data the data set to be used in the test. Must contain only numeric data.
@@ -37,7 +53,7 @@
 #' @param d_simulatepvalue for Dip Test, a logical value indicating whether \eqn{p}~values should be obtained via Monte Carlo simulation (see \code{\link{dip.test}} for details).
 #' @param d_reps for Dip Test, a positive integer. The number of replicates used in Monte Carlo simulation. Only used if \code{d_simulatepvalue} is \code{TRUE}.
 #' @param s_m for Silverman Test, a positive integer. The number of bootstrap replicates used in the test. Default is \code{999}.
-#' @param s_adjust for Silverman Test, a logical value indicating whether p-values are adjusted using work by @cite{hallyorksilverman}.
+#' @param s_adjust for Silverman Test, a logical value indicating whether p-values are adjusted using work by Hall and York.
 #' @param s_digits for Silverman Test, a positive integer indicating the number of digits to round the p value. Default is \code{6} and is only used when \code{s_adjust = TRUE}.
 #' @param s_setseed for Silverman Test, an integer used to set the seed of the random number generator. If the default value of \code{NULL} is used, then no seed will be set.
 #' @param s_outseed for Silverman Test, a logical value indicating whether to return the state of the random number generator as part of the output. This is used in limited cases for troubleshooting, so the default is \code{FALSE}.

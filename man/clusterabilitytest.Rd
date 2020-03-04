@@ -60,7 +60,7 @@ CAUTION: Not all of these have been tested, but instead are provided to potentia
 
 \item{s_m}{for Silverman Test, a positive integer. The number of bootstrap replicates used in the test. Default is \code{999}.}
 
-\item{s_adjust}{for Silverman Test, a logical value indicating whether p-values are adjusted using work by @cite{hallyorksilverman}.}
+\item{s_adjust}{for Silverman Test, a logical value indicating whether p-values are adjusted using work by Hall and York.}
 
 \item{s_digits}{for Silverman Test, a positive integer indicating the number of digits to round the p value. Default is \code{6} and is only used when \code{s_adjust = TRUE}.}
 
